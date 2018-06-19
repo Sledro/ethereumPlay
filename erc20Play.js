@@ -3,29 +3,30 @@ const EthereumTx = require('ethereumjs-tx')
 
 const web3 = new Web3(
   new Web3.providers.HttpProvider('https://mainnet.infura.io/xgkzrFPUUo6yHXFPyVnL')
+  //new Web3.providers.HttpProvider('https://ropsten.infura.io/uNZpIkBeKIopoJs6s41z')
 )
 
 const TotalSupplyHex = '0x18160ddd'
 const BalanceOfHex = '0x70a08231'
 const TransferHex = '0xa9059cbb'
 
-var address = ('0x75CDEAD11E608E5C99428E85f28335163D97bc6c')
-var contractAddress = ('0x6b0D7b8357bB851De9F1953199c39c7Bc4675796') // erc20 Contract
+var address = ('0x25515e96470AF895CDD1f6a5ed6B32DDccAD7B91')
+var contractAddress = ('0xFd1532F8D1834e36897Ebc8DB60e7F2f4249dbD0') // erc20 Contract
 
 //const wallet = CreateAccount()
 //console.log(wallet)
 
 //GetPoolBalance(contractAddress)
 //CheckBalance(address, contractAddress) // erc20 5555 transfer
-// GetTransaction('0xc836c5301821a13b3996e87e42e71d1c16c5ae64e25516009cee363c66228a1a')
+//GetTransaction('0x844afa7f3b95bcaaa98f257ba8f76d2533ee219334db9ac12bb944bd91c476d1')
 // GetTransactionReceipt('0xc836c5301821a13b3996e87e42e71d1c16c5ae64e25516009cee363c66228a1a')
-// IsTransactionSuccessful('0xc836c5301821a13b3996e87e42e71d1c16c5ae64e25516009cee363c66228a1a')
+//IsTransactionSuccessful('0x844afa7f3b95bcaaa98f257ba8f76d2533ee219334db9ac12bb944bd91c476d1')
 
 
 Send(
-  '0x75CDEAD11E608E5C99428E85f28335163D97bc6c',
-  'fe5015428226d3c5825e8125bb405acf0736f5bf947377fe8c1ef8c53161c66b',
-  '0xf48d6e2791130a37c2a94b388b64cb841cfc7391',
+  '0x651C22A8a8C0B3a8ffB3d41951C6c3164eCBf490', //From Address
+  '58546655e15eedf0ffaaa7db385201778f1f89d732c2d1ac89fdff471ef0a0ac', //Private key
+  '0x978b99517C0E40210dbdEA9dD624A01A3524f74F', //To Address
   0.1,
   contractAddress)
 
@@ -129,7 +130,7 @@ async function Send(fromAddress, key, toAddress, amount, contractAddress) {
     var transaction = new EthereumTx(rawTransaction)
     transaction.sign(privateKey)
     const signedTransaction = '0x' + transaction.serialize().toString('hex')
-    console.log(signedTransaction)
+    //console.log(signedTransaction)
 
     const transactionHash = await web3.eth.sendSignedTransaction(signedTransaction)
     console.log(transactionHash)
